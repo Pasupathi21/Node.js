@@ -15,7 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@monorepo-rest-api/core": ["libs/core/src/index.ts"]
+      "@monorepo-rest-api/app-interface": ["libs/app-interface/src/index.ts"],
+      "@monorepo-rest-api/core": ["libs/core/src/index.ts"],
+      "@monorepo-rest-api/public": ["libs/public/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
