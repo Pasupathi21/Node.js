@@ -8,8 +8,8 @@ export default class AppRoutes {
     }
 
     appRoutes() {
-        this.route.get('/', Sample.getOne)
-        
+        this.route.get('/demo', Sample.getOne).get('/new-demo', Sample.getTwo)
+        this.route.post('/register', Sample.create)
         return this.route
     }
 }
