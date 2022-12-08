@@ -1,7 +1,15 @@
-import { Sequelize, DataTypes } from 'sequelize'
+import { Sequelize, DataTypes, Model } from 'sequelize'
+// import { LoginModel } from '@monorepo-rest-api/app-interface'
+
 
 export function loginModel(sequelize: Sequelize) {
     return sequelize.define('Login', {
+        userId: {
+            type: DataTypes.BIGINT,
+            primaryKey: true,
+            autoIncrement: true,
+            allowNull: false
+        },
         firstName: {
             type: DataTypes.STRING(15),
             allowNull: false,
@@ -25,12 +33,12 @@ export function loginModel(sequelize: Sequelize) {
         },
         createddt: {
             type: DataTypes.DATE,
-            defaultValue: Date.now(),
+            defaultValue: new Date(),
             allowNull: true
         },
         updateddt: {
             type: DataTypes.DATE,
-            defaultValue: Date.now(),
+            defaultValue: new Date(),
             allowNull: true
         }
     }, {

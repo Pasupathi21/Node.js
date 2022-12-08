@@ -4,6 +4,8 @@ export interface DbConnection {
     dbPort: number,
     userName: string;
     password: string;
+    dialect: string | any;
+    logging: boolean;
 }
 
 export interface Environment {

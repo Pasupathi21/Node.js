@@ -22,13 +22,7 @@ class Sample {
     async create(req: Request, res: Response) {
         try {
 
-            const response = await Login.create({
-                firstName: 'testuser',
-                lastName: 'One',
-                email: 'test@gmail.com',
-                phone: 3436778556,
-                password: 'sdsfttrgb'
-            })
+            const response = await Login.create(req.body)
             res.json({
                 data: response
             })

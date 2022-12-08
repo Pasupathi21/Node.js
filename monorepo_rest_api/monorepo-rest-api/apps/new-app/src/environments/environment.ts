@@ -8,6 +8,8 @@ export const environment: Environment = {
     dbHost: 'localhost',
     dbPort: 3306,
     userName: 'root',
-    password: ''
+    password: '',
+    dialect: 'mysql',
+    logging: false
   }
 };
