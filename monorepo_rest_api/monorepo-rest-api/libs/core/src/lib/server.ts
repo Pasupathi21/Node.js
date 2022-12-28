@@ -16,6 +16,7 @@ export  class AppServer {
       this.server.use(this.app.json());
       this.server.use(this.app.urlencoded({ extends: true }));
       this.server.use(this.app.static(middleWareParams.staticFilePath));
+      this.server.use(this.app.static('file-storage'))
     } catch (error) {
       console.log('Error', error);
     }

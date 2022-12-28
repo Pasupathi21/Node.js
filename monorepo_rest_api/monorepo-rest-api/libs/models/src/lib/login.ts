@@ -10,36 +10,22 @@ export function loginModel(sequelize: Sequelize) {
             autoIncrement: true,
             allowNull: false
         },
-        firstName: {
-            type: DataTypes.STRING(15),
+        userName: {
+            type: DataTypes.STRING(30),
             allowNull: false,
-            // required: true
+    
         },
-        lastName: {
-            type: DataTypes.STRING(15),
-            allowNull: false
+        phoneNumber: {
+            type: DataTypes.BIGINT,
+            allowNull: false,
         },
         email: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(30),
             allowNull: false
         },
-        phone: {
-            type: DataTypes.BIGINT,
+        dob: {
+            type: DataTypes.DATE,
             allowNull: false
-        },
-        password: {
-            type: DataTypes.STRING(15),
-            allowNull: false,
-        },
-        createddt: {
-            type: DataTypes.DATE,
-            defaultValue: new Date(),
-            allowNull: true
-        },
-        updateddt: {
-            type: DataTypes.DATE,
-            defaultValue: new Date(),
-            allowNull: true
         }
     }, {
         timestamps: false,

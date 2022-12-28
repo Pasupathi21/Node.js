@@ -1,37 +1,17 @@
-import { Request, Response } from 'express'
-import { Login } from '../database/db'
-class Sample {
+import { Request, Response } from "express"
+import { UserModel } from "../database/db"
+class User {
     constructor() {
-        //
+
     }
 
-    getOne(req: Request, res: Response) {
-        res.json(
-            {
-                message: 'WORKING FINE...'
-            }
-        )
-    }
-
-    getTwo(req: Request, res: Response) {
+    async createUser(req: Request, res: Response) {
+        const response = await UserModel.create(req.body);  
         res.json({
-            message: 'WORKING 2 FINE...'
+            data: response
         })
-    }
-
-    async create(req: Request, res: Response) {
-        try {
-
-            const response = await Login.create(req.body)
-            res.json({
-                data: response
-            })
-        } catch (error) {
-            res.json({
-                message: error
-            })
-        }
+       
     }
 }
 
-export default new Sample()
+export default new User

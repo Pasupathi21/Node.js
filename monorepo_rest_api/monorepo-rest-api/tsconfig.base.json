@@ -17,6 +17,7 @@
     "paths": {
       "@monorepo-rest-api/app-interface": ["libs/app-interface/src/index.ts"],
       "@monorepo-rest-api/core": ["libs/core/src/index.ts"],
+      "@monorepo-rest-api/middleware": ["libs/middleware/src/index.ts"],
       "@monorepo-rest-api/models": ["libs/models/src/index.ts"],
       "@monorepo-rest-api/public": ["libs/public/src/index.ts"]
     }

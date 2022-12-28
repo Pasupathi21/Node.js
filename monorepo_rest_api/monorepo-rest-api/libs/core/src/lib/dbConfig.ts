@@ -69,7 +69,7 @@ export class DataBaseConfig {
 
     async syncDB(collection: any) {
         try{
-            await collection.sync({ force: false})
+            await collection.sync({ force: true })
         }catch(error) {
             console.log('ERROR SYNC: ', error)
         }

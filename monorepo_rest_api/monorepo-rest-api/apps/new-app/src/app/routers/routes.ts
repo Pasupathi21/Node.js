@@ -1,5 +1,5 @@
 import { Express } from "express"
-import Sample from '../controller/sample'
+import User from '../controller/sample'
 
 export default class AppRoutes {
     route: Express;
@@ -8,8 +8,11 @@ export default class AppRoutes {
     }
 
     appRoutes() {
-        this.route.get('/demo', Sample.getOne).get('/new-demo', Sample.getTwo)
-        this.route.post('/register', Sample.create)
+        // this.route.get('/user', Sample.getOne).get('/new-demo', Sample.getTwo)
+        this.route.post('/user-register', User.createUser)
+
+        this.route.post('/upload-file', )
+
         return this.route
     }
 }
