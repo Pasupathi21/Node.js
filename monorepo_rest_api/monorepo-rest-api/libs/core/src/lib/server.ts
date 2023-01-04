@@ -11,12 +11,12 @@ export  class AppServer {
     
   }
 
-  setMiddleWare(middleWareParams: Record<string, unknown>) {
+  setMiddleWare(middleWareParams: Record<string, string>) {
     try {
       this.server.use(this.app.json());
-      this.server.use(this.app.urlencoded({ extends: true }));
-      this.server.use(this.app.static(middleWareParams.staticFilePath));
-      this.server.use(this.app.static('file-storage'))
+      this.server.use(this.app.urlencoded({ extended: true }));
+      this.server.use(middleWareParams.staticUrl, this.app.static(middleWareParams.fileStoragePath))
+      console.log('Static')
     } catch (error) {
       console.log('Error', error);
     }

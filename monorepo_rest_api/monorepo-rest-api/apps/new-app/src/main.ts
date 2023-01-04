@@ -12,8 +12,10 @@ import { environment } from './environments/environment';
 // const app = express();
 
 const port = environment.port || 3333;
+
 const middleWareObj = {
-  staticFilePath: path.join(__dirname, 'assets')
+  fileStoragePath: 'file-storage',
+  staticUrl: environment.staticFileUrl
 }
 
 const app = new AppServer(express, port);

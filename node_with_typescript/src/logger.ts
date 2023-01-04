@@ -4,7 +4,7 @@ import * as winston from 'winston'
 const format =  winston.format.combine(
     winston.format.timestamp({ format: 'DD-MM-YYYY HH:mm:ss'}),
     winston.format.align(),
-    winston.format.printf(form => `${form.level}: ${form.message} ${form.timestamp}`)
+    winston.format.printf((form: any) => `${form.level}: ${form.message} ${form.timestamp}`)
 )
 export function appLogger() {
     return  winston.createLogger({

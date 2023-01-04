@@ -11,6 +11,8 @@ export interface DbConnection {
 export interface Environment {
     production: boolean;
     port: number;
-    dbConfig: DbConnection
+    dbConfig: DbConnection;
+    fileStoragePath: string;
+    staticFileUrl: string
 
 }

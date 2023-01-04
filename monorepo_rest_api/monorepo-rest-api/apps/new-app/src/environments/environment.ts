@@ -11,5 +11,8 @@ export const environment: Environment = {
     password: '',
     dialect: 'mysql',
     logging: false
-  }
+  },
+  
+  fileStoragePath: `file-storage`,
+  staticFileUrl: '/file'
 };

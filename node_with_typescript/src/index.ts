@@ -3,13 +3,15 @@ import express, { Request, Response } from 'express'
 
 import { Sequelize, DataTypes, Model, Optional, Op } from 'sequelize'
 import * as bcrypt  from 'bcrypt'
-import { appLogger } from './logger'
-
+// import { appLogger } from './logger'
+import fileUpload from './file-upload'
+import { multerConfig } from './multerCongif'
 
 const app = express()
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
+app.use(express.static('file-storage'))
 
 //DB connection
 
@@ -82,7 +84,9 @@ const salthashAndCheck = async function (saltValue: number, password: string) {
 
 }
 
-const logger = appLogger()
+const multer = multerConfig()
+
+// const logger = appLogger()
 
 app.post('/test', async (req: Request, res: Response) => {
     try {
@@ -98,7 +102,7 @@ app.post('/test', async (req: Request, res: Response) => {
         res.status(404).json({
             data: error
         })
-        logger.log('error', error)
+        // logger.log('error', error)
     }
 })
 
@@ -127,7 +131,7 @@ app.get('/test/:id', async (req, res) => {
         res.status(404).json({
             data: error
         })
-        logger.log('error', error.message)
+        // logger.log('error', error.message)
     }
 })
 
@@ -204,6 +208,8 @@ app.post('/sign-in',  async (req: Request, res: Response) => {
     })
 
 })
+
+app.post('/upload-file', multer.single('file'), fileUpload.uploadFile)
 
 
 app.listen(1113, () => {

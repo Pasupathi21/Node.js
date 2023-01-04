@@ -1,33 +1,40 @@
 import * as multer from 'multer'
+import { Environment } from '@monorepo-rest-api/app-interface';
 
-class UploadFile {
+export class UploadFile {
     storage: any;
     constructor() {}
 
-    multerMiddleware() {
+    multerMiddleware(params: Record<string, unknown>) {
         this.storage = multer.diskStorage({
             destination: (req, file, cb) => {
-                const path = `${__dirname}/../../../../file-storage/images`
+                const path = `${params.rootFolder}/${params.subFolder}`
                 cb(null, path)
             },
             filename: (req, file, cb) => {
-                const fileName = `${ new Date().toISOString() }-${file.originalname}` 
+                // In windows we need to replace the ':' to '-'
+                const splitName = file.originalname.split('.')
+                const fileName = `${splitName[0]}-${ new Date().toISOString() }.${splitName[1]}`.replace(/:/g, '-') 
                 cb(null, fileName)
             }
         });
 
         const mimeFilter = (req: any, file: any, cb: any) => {
+            console.log(Number(req.headers["content-length"]))
             const mimeTypes = ['image/jpg', 'image/jpeg', 'image/png']
-            if(mimeTypes.includes(file.mimetype)) {cb(null, true)}
-            else { cb(null, false) }
+            const sizeValidation = ((Number(req.headers["content-length"]) / (1024 **2)) < 5)
+            if(mimeTypes.includes(file.mimetype) && sizeValidation) {cb(null, true)}
+            else { 
+                const error = new Error('Please upload valid file type and size less than 3MB')
+                cb(error.message, false) 
+            }
         }
 
         return multer({
             storage: this.storage,
-            fileFilter: mimeFilter
+            fileFilter: mimeFilter,
+            limits: {}
         })
     }
 
 }
-
-export default new UploadFile()
