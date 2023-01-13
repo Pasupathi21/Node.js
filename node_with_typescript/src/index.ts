@@ -15,7 +15,7 @@ app.use(express.static('file-storage'))
 
 //DB connection
 
-const dbConnection = new Sequelize('workspace_demo', 'root', '', {
+const dbConnection = new Sequelize('workspace_demo', 'root', 'root', {
     dialect: 'mysql',
     logging: false,
     operatorsAliases: {
